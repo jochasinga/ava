@@ -36,11 +36,27 @@ current = Os.listdir()
 
 ## Case of Module-level Functions
 
-Because Julia is not Object-oriented language, instance methods like `"1.01".is_alpha()` won't happen.
+Because Julia is not Object-oriented language, instance methods like `"1.01".is_alpha()` is unnatural (and probably for the best).
 In Python, the conventions were mixed as in module-level functions `os.listdir` and instance method `''.split`,
 which is a source of confusion for many new to the language.
 
-Module-level functions and/or static methods shold be considered better practice, especially in a library.
+`Ava.Strings` provides a convenient constructor `Str` to wrap a `String` and create an illusion of instance methods. 
+
+For example:
+
+```julia
+
+using Ava
+const Str = Ava.Strings.Str
+
+pi = Str("3.1416")
+pi.is_alpha()  # true
+
+Str("Hello, world!").split() # ["Hello,", "world!"]
+
+```
+
+However, module-level functions and/or static methods shold be considered better practice.
 
 
 
