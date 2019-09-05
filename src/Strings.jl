@@ -1,21 +1,22 @@
 module Strings
-export is_alpha, Str
+export isalpha, Str
 
-function is_alpha(str::String)
+function isalpha(str::String)
     re = r"^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$"
-    occursin(re, str)
+    !occursin(re, str)
 end
 
-function is_alpha(str::String, lazy::Bool)
+function isalpha(str::String, lazy::Bool)
     if lazy
-        return fn() = is_alpha(str)
+        return fn() = isalpha(str)
     end
-    is_alpha(str)
+    isalpha(str)
 end
 
 struct Str
     s::String
-    is_alpha
-    Str(s) = new(s, is_alpha(s, true))
+    isalpha
+    split
+    Str(s) = new(s, isalpha(s, true))
 end
 end

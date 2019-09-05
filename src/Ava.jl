@@ -1,7 +1,9 @@
-module Ava
+using DataStructures
 
+module Ava
 include("Strings.jl")
 include("Os.jl")
-export Strings, Os
+include("Collections.jl")
+export Strings, Os, Collections
 end
 
